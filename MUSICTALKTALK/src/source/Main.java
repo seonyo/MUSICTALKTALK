@@ -1,23 +1,26 @@
 package source;
 
-
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+
 public class Main extends JFrame{
 	JButton main_b1 = new JButton();
 	JButton main_b2 = new JButton();
+	
 	Image background=new ImageIcon(Main.class.getResource("../image/main.png")).getImage();//배경이미지
 	ImageIcon mainb1_img  = new ImageIcon(Main.class.getResource("../image/main_btn1.png"));//게임설명버튼
 	ImageIcon mainb2_img = new ImageIcon(Main.class.getResource("../image/main_btn2.png")); //게임설명버튼
 	public Main() {
 		homeframe();
 		btn();
+		cg();
 	}
 	public void homeframe() {
 		setTitle("MusicTalkTalk"); //타이틀 명
@@ -41,8 +44,17 @@ public class Main extends JFrame{
 	public void paint(Graphics g) {//그리는 함수
 		g.drawImage(background, 0, 0, null);//background를 그려줌
 	}
+	public void cg() {
+		main_b1.addMouseListener(new MouseAdapter(){
+			@Override public void mousePressed(MouseEvent e) {
+				dispose();
+				new loading();
+			
+			}
+			
+		});
+	}
 	public static void main(String[] args) {
 		 new Main();
 	}
-
 }
