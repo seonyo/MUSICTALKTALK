@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,15 +20,38 @@ class play extends JFrame{
 			g.drawImage(playpage, 0,0,null);
 		}
 	};
-	
 	JPanel left = new JPanel() {
 		Image left = new ImageIcon(Main.class.getResource("../image/left.png")).getImage();
 		public void paint(Graphics g) {
-			g.drawImage(left, 0, 0, null);
+			g.drawImage(left, 0,0,null);
 		}
 	};
-	
+	JPanel right = new JPanel() {
+		Image right = new ImageIcon(Main.class.getResource("../image/right.png")).getImage();
+		public void paint(Graphics g) {
+			g.drawImage(right, 0,0,null);
+		}
+	};
+	JPanel up = new JPanel() {
+		Image up = new ImageIcon(Main.class.getResource("../image/up.png")).getImage();
+		public void paint(Graphics g) {
+			g.drawImage(up, 0,0,null);
+		}
+	};
+	JPanel down = new JPanel() {
+		Image down = new ImageIcon(Main.class.getResource("../image/down.png")).getImage();
+		public void paint(Graphics g) {
+			g.drawImage(down, 0,0,null);
+		}
+	};
+	JPanel space = new JPanel() {
+		Image space = new ImageIcon(Main.class.getResource("../image/space.png")).getImage();
+		public void paint(Graphics g) {
+			g.drawImage(space, 0,0,null);
+		}
+	};
 	public play() {
+		
 		setTitle("MusicTalkTalk"); //타이틀 명
 		setSize(1200,850); //프레임 사이즈
 		setResizable(false); //프레임 크기 조정 못하게
@@ -42,10 +66,32 @@ class play extends JFrame{
 		cnt.setFont(cnt.getFont().deriveFont(33.0f));
 		add(cnt);
 		
-		left.setLayout(null);
-		left.setBounds(500,100,50,50);
-		add(left);
 		
+		Random random = new Random();
+		int dira = random.nextInt(5);
+		switch (dira) {
+		case 0 : add(left);
+				left.setLayout(null);
+				left.setBounds(500,100,50,50);
+				break;
+		
+		case 1 : add(right);
+				right.setLayout(null);
+				right.setBounds(500,100,50,50);
+				break;
+		case 2 : add(up);
+				up.setLayout(null);
+				up.setBounds(500,100,50,50);
+				break;
+		case 3 : add(down);
+				down.setLayout(null);
+				down.setBounds(500,100,50,50);
+				break;
+		case 4 : add(space);
+				space.setLayout(null);
+				space.setBounds(500,100,50,50);
+				break;
+		}
 		panel.setLayout(null);
 		panel.setBounds(0,0,1200,850);
 		add(panel);
