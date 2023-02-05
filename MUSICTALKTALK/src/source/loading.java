@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 public class loading extends JFrame {
 	Image loading_ready=new ImageIcon(loading.class.getResource("../image/ready'.png")).getImage();//배경이미지
 	Image loading_start=new ImageIcon(loading.class.getResource("../image/start.png")).getImage();//배경이미지
-
 	public loading() {
 		setTitle("MusicTalkTalk"); //타이틀 명
 		setSize(1200,850); //프레임 사이즈
@@ -28,7 +27,8 @@ public class loading extends JFrame {
 		g.drawImage(loading_start, 0, 0,null);
 		time();
 		dispose();
-	}
+		new play();
+}
 	
 	public void time(){
 		try {
