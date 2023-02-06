@@ -27,7 +27,7 @@ public class loading extends JFrame {
 		g.drawImage(loading_start, 0, 0,null);
 		time();
 		dispose();
-		new play();
+		new stage1();
 }
 	
 	public void time(){
