@@ -3,9 +3,11 @@ package source;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -43,8 +45,18 @@ class TimerBar extends JLabel implements Runnable{
 	}
 }
 
-class stage1 extends JFrame{
+class arrow{
+	Image image;
+	int x;
+	int y;
+	int widht;
+	int height;
+	int score;
+}
+
+class stage1 extends JFrame implements KeyListener{
 	
+	//배경이미지 그리기
 	JPanel panel = new JPanel() {
 		Image playpage = new ImageIcon(Main.class.getResource("../image/gameplay.png")).getImage();
 		public void paint(Graphics g) {
@@ -52,8 +64,29 @@ class stage1 extends JFrame{
 		}
 	};
 	
-
+	JPanel yellow = new JPanel() {
+		Image yellow = new ImageIcon (Main.class.getResource("../image/yellow.png")).getImage();
+		public void paint (Graphics g) {
+			g.drawImage (yellow, 0,0,null);
+		}
+	};
 	
+	JPanel orange = new JPanel() {
+		Image orange = new ImageIcon (Main.class.getResource("../image/orange.png")).getImage();
+		public void paint (Graphics g) {
+			g.drawImage(orange,0,0,null);
+			}
+	};
+	
+	JPanel blue = new JPanel() {
+		Image blue = new ImageIcon(Main.class.getResource("../image/blue.png")).getImage();
+		public void paint (Graphics g) {
+			g.drawImage(blue,0,0,null);
+		}
+	};
+	
+	ArrayList <Integer> arrow_num = new ArrayList<Integer>();
+
 	public stage1() {
 		//stage1 프레임
 		setTitle("MusicTalkTalk"); //타이틀 명
@@ -79,11 +112,11 @@ class stage1 extends JFrame{
 		
 		//화살표 랜덤
 		int x=350, y=200;
+		List <arrow> arrowList = new ArrayList<>();
 		Random random = new Random();
-		
 		for(int i=1; i<=25; i++) {
-			int dira = random.nextInt(5);
-			switch (dira) {
+			arrow_num.add(random.nextInt(5));
+			switch (arrow_num.get(i-1)) {
 			case 0 : 
 				JPanel left = new JPanel() {
 					Image left = new ImageIcon(Main.class.getResource("../image/left.png")).getImage();
@@ -153,11 +186,72 @@ class stage1 extends JFrame{
 			else if(i<=25) x+=80;
 		}
 		
+		//아이콘 추가
+		add (yellow);
+		yellow.setLayout(null);
+		yellow.setBounds(260,200,60,50);
+		
+		add (orange);
+		orange.setLayout(null);
+		orange.setBounds(180,200,60,50);
+		
+		add (blue);
+		blue.setLayout(null);
+		blue.setBounds(100,200,60,50);
+
+		
 		// 배경 패널 추가
 		panel.setLayout(null);
 		panel.setBounds(0,0,1200,850);
 		add(panel);
 		setVisible(true); //프레임 보이게
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //정상적으로 종료되게
+		addKeyListener(this);
+		
+	}
+	
+	//키보드리스너
+	@Override
+	public void keyTyped(KeyEvent e) {
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {	
+	}
+	
+	
+	@Override
+	public void keyPressed (KeyEvent e) {
+		int result,cnt=0,flag;
+		int key = e.getKeyCode();
+		if(key==e.VK_LEFT) {
+			result=0;
+			if(result==arrow_num.get(cnt)) {
+				yellow.setLocation(350,200);
+			}
+		}
+		else if(key==e.VK_RIGHT) {
+			result=1;
+			if(result==arrow_num.get(cnt)) {
+				yellow.setLocation(350,200);
+			}
+		}
+		else if(key==e.VK_UP) {
+			result=2;
+			if(result==arrow_num.get(cnt)) {
+				yellow.setLocation(350,200);
+			}
+		}
+		else if(key==e.VK_DOWN) {
+			result=3;
+			if(result==arrow_num.get(cnt)) {
+				yellow.setLocation(350,200);
+			}
+		}
+		else if(key==e.VK_SPACE) {
+			result=4;
+			if(result==arrow_num.get(cnt)) {
+				yellow.setLocation(350,200);
+			}
+		}
 	}
 }
