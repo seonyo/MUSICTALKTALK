@@ -56,11 +56,20 @@ public class Main extends JFrame{
 	// 게임시작 버튼 눌렀을때
 	public void cg() {
 		main_b1.addMouseListener(new MouseAdapter(){
-			@Override public void mousePressed(MouseEvent e) {
+			@Override 
+			public void mousePressed(MouseEvent e) {
 				dispose();
 				new loading();
 			}
 			
+		});
+		
+		main_b2.addMouseListener (new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				dispose();
+				new game_explanation();
+			}
 		});
 	}
 	
