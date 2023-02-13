@@ -48,6 +48,8 @@ class TimerBar extends JLabel implements Runnable{
 }
 
 
+
+
 class stage1 extends JFrame implements KeyListener{
 	
 	//배경이미지 그리기
@@ -79,8 +81,12 @@ class stage1 extends JFrame implements KeyListener{
 		}
 	};
 	
+
+	
 	ArrayList <Integer> arrow_num = new ArrayList<Integer>();
 	ArrayList <JPanel> arrow= new ArrayList <JPanel>();
+	static int score=0;
+	JLabel scoreJL;
 	public stage1() {
 		//stage1 프레임
 		setTitle("MusicTalkTalk"); //타이틀 명
@@ -89,7 +95,6 @@ class stage1 extends JFrame implements KeyListener{
 		setLocationRelativeTo(null); //창이 가운데로
 		setLayout(null);
 		int stage_cnt=1;
-		
 		//stage JLabel
 		JLabel cnt = new JLabel();
 		cnt.setBounds(1080,5,50,50);
@@ -97,6 +102,7 @@ class stage1 extends JFrame implements KeyListener{
 		cnt.setForeground(Color.WHITE);
 		cnt.setFont(cnt.getFont().deriveFont(33.0f));
 		add(cnt);
+	
 		
 		int second = 40;
 		TimerBar timerbar = new TimerBar(second);
@@ -198,6 +204,13 @@ class stage1 extends JFrame implements KeyListener{
 		blue.setLayout(null);
 		blue.setBounds(100,200,60,50);
 
+		//scoreLabel
+		scoreJL = new JLabel();
+		scoreJL.setBounds(1075,45,150,50);
+		scoreJL.setText(Integer.toString(score));
+		scoreJL.setForeground(Color.YELLOW);
+		scoreJL.setFont(cnt.getFont().deriveFont(30.0f));
+		add(scoreJL);
 		
 		// 배경 패널 추가
 		panel.setLayout(null);
@@ -206,6 +219,7 @@ class stage1 extends JFrame implements KeyListener{
 		setVisible(true); //프레임 보이게
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //정상적으로 종료되게
 		addKeyListener(this);
+	
 		
 	}
 	
@@ -232,7 +246,8 @@ class stage1 extends JFrame implements KeyListener{
 					yellow.setLocation(y_x,y_y);
 					orange.setLocation(o_x,o_y);
 					blue.setLocation(b_x, b_y);
-					cnt++; flag=1;
+					cnt++; flag=1; score+=50;
+					scoreJL.setText(Integer.toString(score));
 				}
 			}
 			else if(key==e.VK_RIGHT) {
@@ -242,7 +257,9 @@ class stage1 extends JFrame implements KeyListener{
 					yellow.setLocation(y_x,y_y);
 					orange.setLocation(o_x,o_y);
 					blue.setLocation(b_x, b_y);
-					cnt++; flag=1;
+					cnt++; flag=1; score+=50;
+					scoreJL.setText(Integer.toString(score));
+
 				}
 			}
 			else if(key==e.VK_UP) {
@@ -252,7 +269,9 @@ class stage1 extends JFrame implements KeyListener{
 					yellow.setLocation(y_x,y_y);
 					orange.setLocation(o_x,o_y);
 					blue.setLocation(b_x, b_y);
-					cnt++; flag=1;
+					cnt++; flag=1; score+=50;
+					scoreJL.setText(Integer.toString(score));
+
 				}
 			}
 			else if(key==e.VK_DOWN) {
@@ -262,7 +281,9 @@ class stage1 extends JFrame implements KeyListener{
 					yellow.setLocation(y_x,y_y);
 					orange.setLocation(o_x,o_y);
 					blue.setLocation(b_x, b_y);
-					cnt++; flag=1;
+					cnt++; flag=1; score+=50;
+					scoreJL.setText(Integer.toString(score));
+
 				}
 			}
 			else if(key==e.VK_SPACE) {
@@ -272,7 +293,8 @@ class stage1 extends JFrame implements KeyListener{
 					yellow.setLocation(y_x,y_y);
 					orange.setLocation(o_x,o_y);
 					blue.setLocation(b_x, b_y);
-					cnt++; flag=1;
+					cnt++; flag=1; score+=50;		
+					scoreJL.setText(Integer.toString(score));
 				}
 			}
 			//yellow 위치
