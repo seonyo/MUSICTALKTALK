@@ -1,12 +1,14 @@
 package source;
 
+import java.awt.AlphaComposite;
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -45,14 +47,6 @@ class TimerBar extends JLabel implements Runnable{
 	}
 }
 
-class arrow{
-	Image image;
-	int x;
-	int y;
-	int widht;
-	int height;
-	int score;
-}
 
 class stage1 extends JFrame implements KeyListener{
 	
@@ -86,7 +80,7 @@ class stage1 extends JFrame implements KeyListener{
 	};
 	
 	ArrayList <Integer> arrow_num = new ArrayList<Integer>();
-
+	ArrayList <JPanel> arrow= new ArrayList <JPanel>();
 	public stage1() {
 		//stage1 프레임
 		setTitle("MusicTalkTalk"); //타이틀 명
@@ -112,7 +106,6 @@ class stage1 extends JFrame implements KeyListener{
 		
 		//화살표 랜덤
 		int x=350, y=200;
-		List <arrow> arrowList = new ArrayList<>();
 		Random random = new Random();
 		for(int i=1; i<=25; i++) {
 			arrow_num.add(random.nextInt(5));
@@ -124,10 +117,10 @@ class stage1 extends JFrame implements KeyListener{
 						g.drawImage(left, 0,0,null);
 					}
 				};
-				
-				add(left);
-					left.setLayout(null);
-					left.setBounds(x,y,50,50);
+				arrow.add(left);
+				add(arrow.get(i-1));
+					arrow.get(i-1).setLayout(null);
+					arrow.get(i-1).setBounds(x,y,50,50);
 					break;
 			
 			case 1 : 
@@ -137,9 +130,10 @@ class stage1 extends JFrame implements KeyListener{
 						g.drawImage(right, 0,0,null);
 					}
 				};
-				add(right);
-					right.setLayout(null);
-					right.setBounds(x,y,50,50);
+				arrow.add(right);
+				add(arrow.get(i-1));
+					arrow.get(i-1).setLayout(null);
+					arrow.get(i-1).setBounds(x,y,50,50);
 					break;
 					
 			case 2 :
@@ -149,9 +143,10 @@ class stage1 extends JFrame implements KeyListener{
 						g.drawImage(up, 0,0,null);
 					}
 				};
-					add(up);
-					up.setLayout(null);
-					up.setBounds(x,y,50,50);
+				arrow.add(up);
+				add(arrow.get(i-1));
+					arrow.get(i-1).setLayout(null);
+					arrow.get(i-1).setBounds(x,y,50,50);
 					break;
 					
 			case 3 :
@@ -162,9 +157,10 @@ class stage1 extends JFrame implements KeyListener{
 						g.drawImage(down, 0,0,null);
 					}
 				};
-				add(down);
-					down.setLayout(null);
-					down.setBounds(x,y,50,50);
+				arrow.add(down);
+				add(arrow.get(i-1));
+					arrow.get(i-1).setLayout(null);
+					arrow.get(i-1).setBounds(x,y,50,50);
 					break;
 					
 			case 4 :
@@ -174,9 +170,11 @@ class stage1 extends JFrame implements KeyListener{
 						g.drawImage(space, 0,0,null);
 					}
 				};				
-				add(space);
-					space.setLayout(null);
-					space.setBounds(x,y,50,50);
+				arrow.add(space);
+				add(arrow.get(i-1));
+					arrow.get(i-1).setLayout(null);
+					arrow.get(i-1).setBounds(x,y,50,50);
+					System.out.println(i);
 					break;
 			}
 			if(i>0 && i<=6) x+=80;
@@ -184,6 +182,7 @@ class stage1 extends JFrame implements KeyListener{
 			else if(i<=15) x-=80;
 			else if(i<=17) y+=80;
 			else if(i<=25) x+=80;
+			System.out.println(arrow.get(i-1));
 		}
 		
 		//아이콘 추가
@@ -218,40 +217,85 @@ class stage1 extends JFrame implements KeyListener{
 	public void keyReleased(KeyEvent e) {	
 	}
 	
-	
+	int cnt=0, flag;
+	int y_x=350,y_y=200;
+	int o_x=270,o_y=200;
+	int b_x=190, b_y=200;
 	@Override
 	public void keyPressed (KeyEvent e) {
-		int result,cnt=0,flag;
+		int result;
 		int key = e.getKeyCode();
-		if(key==e.VK_LEFT) {
-			result=0;
-			if(result==arrow_num.get(cnt)) {
-				yellow.setLocation(350,200);
+			if(key==e.VK_LEFT) {
+				result=0; flag=0;
+				if(result==arrow_num.get(cnt)) {
+					arrow.get(cnt).setSize(0,0);
+					yellow.setLocation(y_x,y_y);
+					orange.setLocation(o_x,o_y);
+					blue.setLocation(b_x, b_y);
+					cnt++; flag=1;
+				}
 			}
-		}
-		else if(key==e.VK_RIGHT) {
-			result=1;
-			if(result==arrow_num.get(cnt)) {
-				yellow.setLocation(350,200);
+			else if(key==e.VK_RIGHT) {
+				result=1; flag=0;
+				if(result==arrow_num.get(cnt)) {
+					arrow.get(cnt).setSize(0,0);
+					yellow.setLocation(y_x,y_y);
+					orange.setLocation(o_x,o_y);
+					blue.setLocation(b_x, b_y);
+					cnt++; flag=1;
+				}
 			}
-		}
-		else if(key==e.VK_UP) {
-			result=2;
-			if(result==arrow_num.get(cnt)) {
-				yellow.setLocation(350,200);
+			else if(key==e.VK_UP) {
+				result=2; flag=0;
+				if(result==arrow_num.get(cnt)) {
+					arrow.get(cnt).setSize(0,0);
+					yellow.setLocation(y_x,y_y);
+					orange.setLocation(o_x,o_y);
+					blue.setLocation(b_x, b_y);
+					cnt++; flag=1;
+				}
 			}
-		}
-		else if(key==e.VK_DOWN) {
-			result=3;
-			if(result==arrow_num.get(cnt)) {
-				yellow.setLocation(350,200);
+			else if(key==e.VK_DOWN) {
+				result=3; flag=0;
+				if(result==arrow_num.get(cnt)) {
+					arrow.get(cnt).setSize(0,0);
+					yellow.setLocation(y_x,y_y);
+					orange.setLocation(o_x,o_y);
+					blue.setLocation(b_x, b_y);
+					cnt++; flag=1;
+				}
 			}
-		}
-		else if(key==e.VK_SPACE) {
-			result=4;
-			if(result==arrow_num.get(cnt)) {
-				yellow.setLocation(350,200);
+			else if(key==e.VK_SPACE) {
+				result=4; flag=0;
+				if(result==arrow_num.get(cnt)) {
+					arrow.get(cnt).setSize(0,0);
+					yellow.setLocation(y_x,y_y);
+					orange.setLocation(o_x,o_y);
+					blue.setLocation(b_x, b_y);
+					cnt++; flag=1;
+				}
 			}
-		}
+			//yellow 위치
+			if(flag==1) {
+				if(cnt>0 && cnt<=6) y_x+=80;
+				else if(cnt<=8) y_y+=80;
+				else if(cnt<=15) y_x-=80;
+				else if(cnt<=17) y_y+=80;
+				else if(cnt<=25) y_x+=80;
+				
+				//orange 위치
+				if(cnt>0 && cnt<=7) o_x+=80;
+				else if(cnt<=9) o_y+=80;
+				else if(cnt<=16) o_x-=80;
+				else if(cnt<=18) o_y+=80;
+				else if(cnt<=25) o_x+=80;
+				
+				//blue 위치
+				if(cnt>0 && cnt<=8) b_x+=80;
+				else if(cnt<=10) b_y+=80;
+				else if(cnt<=17) b_x-=80;
+				else if(cnt<=19) b_y+=80;
+				else if(cnt<=25) b_x+=80;
+			}
 	}
 }
