@@ -21,7 +21,7 @@ class TimerBar extends JLabel implements Runnable{
 	int width = 550, height=50; //크기
 	int x=330, y=25; //위치
 	int second;
-	
+	//타임바
 	public TimerBar(int second) {
 		setBackground(Color.yellow);
 		setOpaque(true);
