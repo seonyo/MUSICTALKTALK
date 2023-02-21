@@ -18,9 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 class TimerBar extends JLabel implements Runnable{
-	int width = 500, height=50; //크기
-	int x=335, y=25; //위치
-	
+	int width = 550, height=50; //크기
+	int x=330, y=25; //위치
 	int second;
 	
 	public TimerBar(int second) {
@@ -29,29 +28,33 @@ class TimerBar extends JLabel implements Runnable{
 		setBounds (x,y,width,height);
 		this.second = second;
 	}
+	
 	@Override
 	public void run() {
 		while(true) {
-			try {
-				Thread.sleep(1000/ (width/second));
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-			if(getWidth()>250) {
+			if(getWidth()>270) {
 				width-=3;
 				setBounds(x,y,width, height);
 			}
-			else if(getWidth()>=90){
+			else if(getWidth()>=110){
 				width-=3;
 				setBounds(x,y,width, height);
 				setBackground(Color.ORANGE);
 			}
-			else if(getWidth()<90) {
+			else if(getWidth()>=25) {
 				width-=3;
 				setBounds(x,y,width, height);
 				setBackground(Color.RED);
 			}
-			else break;
+			else{			
+				new gameover();
+				break;
+			}
+			try {
+				Thread.sleep(1000/ (120/second));
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
@@ -174,7 +177,6 @@ class stage1 extends JFrame implements KeyListener{
 				add(arrow.get(i-1));
 					arrow.get(i-1).setLayout(null);
 					arrow.get(i-1).setBounds(x,y,50,50);
-					System.out.println(i);
 					break;
 			}
 			if(i>0 && i<=6) x+=80;
@@ -215,7 +217,6 @@ class stage1 extends JFrame implements KeyListener{
 			add(heart.get(i));
 			heart.get(i).setLayout(null);
 			heart.get(i).setBounds(270-(i*80),200,60,60);
-			System.out.println(heart.size());
 		}
 
 		//scoreLabel
