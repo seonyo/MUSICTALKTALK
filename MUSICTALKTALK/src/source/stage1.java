@@ -82,7 +82,7 @@ class stage1 extends JFrame implements KeyListener{
 	
 	ArrayList <Integer> arrow_num = new ArrayList<Integer>();
 	ArrayList <JPanel> arrow= new ArrayList <JPanel>();
-	ArrayList <JPanel> heart = new ArrayList <JPanel>();
+	static ArrayList <JPanel> heart = new ArrayList <JPanel>();
 	static int score=0;
 	JLabel scoreJL;
 	public stage1() {
@@ -311,6 +311,7 @@ class stage1 extends JFrame implements KeyListener{
 					scoreJL.setText(Integer.toString(score));
 				}
 			}
+		
 			//yellow 위치
 			if(flag==1) {
 				if(cnt>0 && cnt<=6) y_x+=80;
@@ -339,10 +340,13 @@ class stage1 extends JFrame implements KeyListener{
 				Collections.swap(heart, 0, 1);
 				Collections.swap(heart, 1,2);
 				--life;
-				
 				if(life==0) {
 					new gameover();
 				}
+			}
+			if(cnt==arrow.size()) {
+				dispose();
+				new NextLevel();
 			}
 	}
 }
