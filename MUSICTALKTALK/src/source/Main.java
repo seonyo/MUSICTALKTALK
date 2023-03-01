@@ -32,7 +32,7 @@ public class Main extends JFrame{
 	public void homeframe() {
 		setTitle("MusicTalkTalk"); //타이틀 명
 		setSize(1200,850); //프레임 사이즈
-		setResizable(false); //프레임 크기 조정 못하게
+		setResizable(false); //프레임 크기 조정 못하게k
 		setLocationRelativeTo(null); //창이 가운데로
 		setLayout(null); //레이아웃을 내맘대로 설정 가능
 		setVisible(true); //창이 보이게

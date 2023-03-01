@@ -66,14 +66,14 @@ class TimerBar extends JLabel implements Runnable{
 class stage1 extends JFrame implements KeyListener{
 	
 	//배경이미지 그리기
-	JPanel panel = new JPanel() {
+	public JPanel panel = new JPanel() {
 		Image playpage = new ImageIcon(Main.class.getResource("../image/gameplay.png")).getImage();
 		public void paint(Graphics g) {
 			g.drawImage(playpage, 0,0,null);
 		}
 	};
 	//gameover 이미지 그리기
-	JPanel gameover = new JPanel() {
+	public JPanel gameover = new JPanel() {
 		Image gameoverimg = new ImageIcon(Main.class.getResource("../image/gameover.png")).getImage();
 		public void paint (Graphics g) {
 			g.drawImage(gameoverimg, 0,0,null);
@@ -84,7 +84,8 @@ class stage1 extends JFrame implements KeyListener{
 	ArrayList <JPanel> arrow= new ArrayList <JPanel>();
 	static ArrayList <JPanel> heart = new ArrayList <JPanel>();
 	static int score=0;
-	JLabel scoreJL;
+	static JLabel scoreJL;
+	
 	public stage1() {
 		//stage1 프레임
 		setTitle("MusicTalkTalk"); //타이틀 명

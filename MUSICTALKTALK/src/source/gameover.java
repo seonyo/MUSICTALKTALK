@@ -2,6 +2,8 @@ package source;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,5 +38,23 @@ public class gameover extends JFrame {
 		again.setBounds(650,450,350,50);
 		add(again);
 		again.setIcon(againimg);
+		cg();
+	}
+	
+	public void cg() {
+		End.addMouseListener(new MouseAdapter() {
+			@Override 
+			public void mousePressed(MouseEvent e) {
+				System.exit(0);
+			}
+			
+		});
+		again.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				dispose();
+				new loading();
+			}
+		});
 	}
 }

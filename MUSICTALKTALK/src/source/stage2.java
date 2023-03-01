@@ -1,10 +1,12 @@
 package source;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class stage2  extends JFrame{
@@ -27,9 +29,17 @@ public class stage2  extends JFrame{
 		threadBar.start();
 		add(timerbar);
 		
+		JLabel scoreJL = new JLabel();
+		scoreJL.setBounds(1075,45,150,50);
+		scoreJL.setText(Integer.toString(2));
+		scoreJL.setForeground(Color.YELLOW);
+		scoreJL.setFont(scoreJL.getFont().deriveFont(30.0f));
+		add(scoreJL);
+		
 		panel.setLayout(null);
 		panel.setBounds(0,0,1200,850);
 		add(panel);
+		
 		setVisible (true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
